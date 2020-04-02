@@ -1,0 +1,67 @@
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    httptrace:
+      enabled: false
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - metrics
+          - httptrace
+          - info
+          - prometheus
+
+spring:
+  application:
+    name: service-gw
+  security:
+    user:
+      name: user
+      password: pass
+      roles:
+        - SYSTEM
+  cloud:
+    consul:
+      discovery:
+        tags: urlprefix-/${spring.application.name} strip=/${spring.application.name} host=dst
+        health-check-url: http://${HOST:docker.for.mac.localhost}:${PORT:8080}/actuator/health
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+    circuit:
+      breaker:
+        enabled: true
+    vault:
+      token: "RootTokenIdPlaceholder"
+      scheme: http
+      kv:
+        enabled: true
+    gateway:
+      routes:
+        - id: service-a
+          uri: lb://service-a/sa/**
+          predicates:
+            - Path=/sa/**
+        - id: service-b
+          uri: lb://service-b/sb/**
+          predicates:
+            - Path=/sb/**
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud: DEBUG
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
+    pl.sparkidea: DEBUG
