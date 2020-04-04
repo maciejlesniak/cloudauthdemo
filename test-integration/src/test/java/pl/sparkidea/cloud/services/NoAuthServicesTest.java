@@ -1,8 +1,7 @@
-package pl.sparkidea.cloud.gw;
+package pl.sparkidea.cloud.services;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-import static pl.sparkidea.cloud.Topology.GATEWAY_URL;
 import static pl.sparkidea.cloud.Topology.SERVICE_A_URL;
 import static pl.sparkidea.cloud.Topology.SERVICE_B_URL;
 
@@ -18,11 +17,11 @@ public class NoAuthServicesTest {
 
     return Stream.of(
         new TestCase<>(
-            GATEWAY_URL,
+            SERVICE_A_URL,
             "/sa/test",
             is(String.format("response from %s as principal anonymousUser", SERVICE_A_URL.getServiceName()))),
         new TestCase<>(
-            GATEWAY_URL,
+            SERVICE_B_URL,
             "/sb/test",
             is(String.format("response from %s as principal anonymousUser", SERVICE_B_URL.getServiceName())))
     );
