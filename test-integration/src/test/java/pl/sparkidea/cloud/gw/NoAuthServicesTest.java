@@ -49,6 +49,16 @@ public class NoAuthServicesTest {
 
       return bodyMatcher;
     }
+
+    @Override
+    public String toString() {
+
+      return "TestCase{" +
+          "cloudService=" + cloudService +
+          ", path='" + path + '\'' +
+          ", bodyMatcher=" + bodyMatcher +
+          '}';
+    }
   }
 
   private static Stream<TestCase> getTestCases() {

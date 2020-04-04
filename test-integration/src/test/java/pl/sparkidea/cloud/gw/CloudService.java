@@ -21,4 +21,13 @@ public class CloudService {
 
     return serviceName;
   }
+
+  @Override
+  public String toString() {
+
+    return "CloudService{" +
+        "serviceUrl='" + serviceUrl + '\'' +
+        ", serviceName='" + serviceName + '\'' +
+        '}';
+  }
 }
