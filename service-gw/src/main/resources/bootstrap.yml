@@ -24,12 +24,7 @@ management:
 spring:
   application:
     name: service-gw
-  security:
-    user:
-      name: user
-      password: pass
-      roles:
-        - SYSTEM
+
   cloud:
     consul:
       discovery:

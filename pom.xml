@@ -7,6 +7,7 @@
         <module>service-a</module>
         <module>service-b</module>
         <module>service-gw</module>
+        <module>test-integration</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
