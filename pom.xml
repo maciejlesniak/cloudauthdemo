@@ -3,12 +3,33 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>service-a</module>
-        <module>service-b</module>
-        <module>service-gw</module>
-        <module>test-integration</module>
-    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <artifactId>spring-boot-devtools</artifactId>
+                <groupId>org.springframework.boot</groupId>
+                <optional>true</optional>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <groupId>org.springframework.boot</groupId>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <groupId>org.springframework.cloud</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>lib-authspringconfig</artifactId>
+                <groupId>pl.sparkidea.auth.cloud</groupId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -69,32 +90,16 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <scope>runtime</scope>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <modules>
+        <module>service-a</module>
+        <module>service-b</module>
+        <module>service-gw</module>
+        <module>test-integration</module>
+        <module>lib-authspringconfig</module>
+    </modules>
 
     <build>
         <plugins>

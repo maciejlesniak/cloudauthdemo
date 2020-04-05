@@ -16,6 +16,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <artifactId>lib-authspringconfig</artifactId>
+            <groupId>pl.sparkidea.auth.cloud</groupId>
+        </dependency>
     </dependencies>
 
 

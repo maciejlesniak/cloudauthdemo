@@ -30,6 +30,21 @@ spring:
       password: pass
       roles:
         - SYSTEM
+    auth:
+      inmemory:
+        users:
+          - name: sa
+            password: "{noop}1234"
+            roles:
+              - sysRole_admin
+              - sysRole_test
+              - sysRole-AAccess
+          - name: sb
+            password: "{noop}4321"
+            roles:
+              - sysRole_admin
+              - sysRole_test
+              - sysRole-BAccess
   cloud:
     consul:
       discovery:
@@ -45,6 +60,7 @@ spring:
       scheme: http
       kv:
         enabled: true
+      uri: http://docker.for.mac.localhost:8200
 
 logging:
   level:
